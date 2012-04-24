@@ -1,3 +1,7 @@
+% This file contains a basic documentclass for different papers at the HSR
+% The base documentclass of this document is article
+% Author: Juerg Rast (jrast@hsr.ch)
+% Date:   23.4.2012
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{HSR}[2012/04/23 HSR-Spezial Klasse]
 
@@ -29,16 +33,16 @@
 
 \pagestyle{fancy}
 \fancyhf{}
-	\fancyhead[L]{
-	\raisebox{-3.6mm}{\includegraphics[width=60.5mm]{images/HSR_Logo_CMYK.pdf}}}
-	\fancyhead[R] {
-	\arialForHeader \titleinfo\\
+\fancyhead[L]{
+	\raisebox{-3.6mm}{\includegraphics[width=60.5mm]{images/HSR_Logo_CMYK}}
+}
+\fancyhead[R] {
 	\nouppercase\leftmark\\
 	\vspace{1.7mm}
 }
 
 \fancyfoot[EL,OR]{\arialForHeader \thepage}
-\fancyfoot[OL,ER]{\arialForHeader \authorinfo, \today}
+\fancyfoot[OL,ER]{\arialForHeader \today}
 \renewcommand{\footrulewidth}{0.5pt}
 \renewcommand{\headrulewidth}{0.5pt}
 
@@ -50,3 +54,18 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%
 \let\OldMarginPar\marginpar
 \renewcommand{\marginpar}[1]{\OldMarginPar{\textit{#1}}}
+
+%%%%%%%%%%%%%%
+%% Commands %%
+%%%%%%%%%%%%%%
+\newcommand{\settitle}[1]{%
+  \fancyhead[R] {
+    \arialForHeader #1\\
+    \nouppercase\leftmark\\
+    \vspace{1.7mm}
+  }
+}
+
+\newcommand{\setauthor}[1]{%
+  \fancyfoot[OL,ER]{\arialForHeader #1, \today}
+}
