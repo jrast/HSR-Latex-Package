@@ -5,10 +5,37 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{HSR}[2012/04/23 HSR-Spezial Klasse]
 
+\RequirePackage{kvoptions}
+\RequirePackage{boolexpr, pdftexcmds}
 
-\DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
-\ProcessOptions\relax
+\makeatletter
+
+%% Hilfsfunktion für Stringvergleiche
+\long\def\isequal#1#2{\pdf@strcmp{#1}{#2}}
+
+%% Eigene definitionen für Längen
+\newlength{\HSRInner}\setlength{\HSRInner}{25mm}
+\newlength{\HSROuter}\setlength{\HSROuter}{42mm}
+
+
+%% Package Optionen
+\DeclareStringOption[top]{logo}[top]
+
+\DeclareVoidOption{twoside}{
+  \PassOptionsToClass{twoside}{article}
+  \setlength{\HSRInner}{21mm}
+  \setlength{\HSROuter}{42mm}
+}
+
+
+
+%% Optionen verarbeiten
+\DeclareDefaultOption{\PassOptionsToClass{\CurrentOption}{article}}
+\ProcessKeyvalOptions*
+%% Klasse article laden
 \LoadClass[]{article}
+
+
 
 \RequirePackage{HSRColors}
 \RequirePackage[utf8]{inputenc}
@@ -20,12 +47,14 @@
 	headheight=25.5mm, % Gleich hoch wie HSR Logo!
 	headsep=5mm,
 	top=40mm,
-	left=25mm,
-	right=42mm,
-	%inner=21mm,
-	%outer=42mm,
+	inner=\HSRInner,
+	outer=\HSROuter,
 	bottom=30mm,
 	marginparwidth=32mm]{geometry}
+  
+  
+
+
 \RequirePackage{fancyhdr, calc}
 
 \newcommand{\arialForHeader}{%
@@ -40,11 +69,35 @@
 	\nouppercase\leftmark\\
 	\vspace{1.7mm}
 }
-
-\fancyfoot[EL,OR]{\arialForHeader \thepage}
-\fancyfoot[OL,ER]{\arialForHeader \today}
+\if@twoside
+  \fancyfoot[EL,OR]{\arialForHeader \thepage}
+  \fancyfoot[OL,ER]{\arialForHeader \today}
+\else
+  \fancyfoot[R]{\arialForHeader \thepage}
+  \fancyfoot[L]{\arialForHeader \today}
+\fi
 \renewcommand{\footrulewidth}{0.5pt}
 \renewcommand{\headrulewidth}{0.5pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Föllig sinnloser switch-Block um zu sehen wie es funktioniert! %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\makeatletter
+\switch
+\case{\isequal{\HSR@logo}{undefined}}
+  %\fancyfoot[c]{undefined}
+\case{\isequal{\HSR@logo}{top}}
+  %\fancyfoot[c]{top}
+\case{\isequal{\HSR@logo}{bottom}}
+  %\fancyfoot[c]{bottom}
+\otherwise
+  \ClassError{HSR}{
+    \MessageBreak
+    value >\HSR@logo< unknown \MessageBreak
+    possible values are: top (default), bottom. \MessageBreak
+  }{}
+\endswitch
+\makeatother
 
 
 
@@ -67,5 +120,11 @@
 }
 
 \newcommand{\setauthor}[1]{%
-  \fancyfoot[OL,ER]{\arialForHeader #1, \today}
+  \if@twoside
+    \fancyfoot[OL,ER]{\arialForHeader #1, \today}
+  \else
+    \fancyfoot[L]{\arialForHeader #1, \today}
+  \fi
 }
+
+\makeatother
