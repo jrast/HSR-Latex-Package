@@ -5,20 +5,24 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{HSR}[2012/04/23 HSR-Spezial Klasse]
 
+% Diese Packages werden gebraucht um Optionen zu übergeben und auszuwerten
 \RequirePackage{kvoptions}
 \RequirePackage{boolexpr, pdftexcmds}
 
+% Dem (at)-Zeichen den gleichen Code zuweisen wie normalen Buchstaben
 \makeatletter
-
 %% Hilfsfunktion für Stringvergleiche
 \long\def\isequal#1#2{\pdf@strcmp{#1}{#2}}
 
-%% Eigene definitionen für Längen
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Eigene definitionen für Längen %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newlength{\HSRInner}\setlength{\HSRInner}{25mm}
 \newlength{\HSROuter}\setlength{\HSROuter}{42mm}
 
-
-%% Package Optionen
+%%%%%%%%%%%%%%%%%%%%%%
+%% Package Optionen %%
+%%%%%%%%%%%%%%%%%%%%%%
 \DeclareStringOption[top]{logo}[top]
 
 \DeclareVoidOption{twoside}{
@@ -29,14 +33,17 @@
 
 
 
-%% Optionen verarbeiten
 \DeclareDefaultOption{\PassOptionsToClass{\CurrentOption}{article}}
+%% Optionen verarbeiten
 \ProcessKeyvalOptions*
+
 %% Klasse article laden
-\LoadClass[]{article}
+\LoadClass[a4paper]{article}
 
 
-
+%%%%%%%%%%%%%%
+%% Packages %%
+%%%%%%%%%%%%%%
 \RequirePackage{HSRColors}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[ngerman]{babel,varioref}
@@ -51,12 +58,11 @@
 	outer=\HSROuter,
 	bottom=30mm,
 	marginparwidth=32mm]{geometry}
-  
-  
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Kopf- und Fusszeile %%
+%%%%%%%%%%%%%%%%%%%%%%%%%
 \RequirePackage{fancyhdr, calc}
-
 \newcommand{\arialForHeader}{%
 \fontfamily{ua1}\fontseries{m}\fontsize{10}{11.5}\selectfont}
 
@@ -78,6 +84,16 @@
 \fi
 \renewcommand{\footrulewidth}{0.5pt}
 \renewcommand{\headrulewidth}{0.5pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Links, Verweise und Aktionen im Dokument %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage{hyperref}
+\hypersetup{
+	linkbordercolor=HSRBlue40,
+	urlbordercolor=HSRLakeGreen40,
+	pdfdisplaydoctitle
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Föllig sinnloser switch-Block um zu sehen wie es funktioniert! %%
@@ -112,6 +128,7 @@
 %% Commands %%
 %%%%%%%%%%%%%%
 \newcommand{\settitle}[1]{%
+  \hypersetup{pdftitle={#1}}
   \fancyhead[R] {
     \arialForHeader #1\\
     \nouppercase\leftmark\\
@@ -120,6 +137,7 @@
 }
 
 \newcommand{\setauthor}[1]{%
+  \hypersetup{pdfauthor={#1}}
   \if@twoside
     \fancyfoot[OL,ER]{\arialForHeader #1, \today}
   \else
