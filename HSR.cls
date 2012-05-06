@@ -57,12 +57,13 @@
 	inner=\HSRInner,
 	outer=\HSROuter,
 	bottom=30mm,
+  marginparsep=5mm,
 	marginparwidth=32mm]{geometry}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %% Kopf- und Fusszeile %%
 %%%%%%%%%%%%%%%%%%%%%%%%%
-\RequirePackage{fancyhdr, calc}
+\RequirePackage{fancyhdr}
 \newcommand{\arialForHeader}{%
 \fontfamily{ua1}\fontseries{m}\fontsize{10}{11.5}\selectfont}
 
@@ -84,6 +85,8 @@
 \fi
 \renewcommand{\footrulewidth}{0.5pt}
 \renewcommand{\headrulewidth}{0.5pt}
+
+%\fancyhfoffset[LE,RO]{35mm} % = marginparwidth + marginparsep
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Links, Verweise und Aktionen im Dokument %%
@@ -143,6 +146,10 @@
   \else
     \fancyfoot[L]{\arialForHeader #1, \today}
   \fi
+}
+
+\newcommand{\setarraystretch}[1]{%
+  \renewcommand{\arraystretch}{#1}
 }
 
 \makeatother
