@@ -1,0 +1,46 @@
+\section{Seitenabmessungen und andere Längen}
+Nachfolgend eine Tabelle mit den Abmessungen und Längen welche durch die HSR-Klasse und das HSR-Package festgelegt werden.
+Die Längenangaben sind mit Vorsicht zu geniessen, da sie einfach durch eigenen Commands oder Packages überschrieben werden können.
+Die Werte in der Tabelle wurden mit \LaTeX generiert, dadurch entstehen relativ grosse Rundungsfehler.
+
+\newdimen\blsk
+\blsk=\baselineskip
+
+\begin{table}[!ht]
+\centering
+\rowcolors{3}{HSRLightGray20}{HSRLightGray40}
+\begin{tabular}{*{4}{l}}
+	\rowcolor{HSRBasswood40}
+	\textbf{Name} 		& \textbf{\LaTeX-Makro}		& \textbf{Länge (cm)} 								& \textbf{Länge (pt)}
+	\\
+	\rowcolor{HSRLakeGreen40}
+	\textbf{Papier und Satz} & & &
+	\\
+	Papierbreite 		& \verb+\paperwidth+		& \uselengthunit{cm}\printlength{\paperwidth}		& \uselengthunit{pt}\printlength{\paperwidth}
+	\\
+	Papierhöhe			& \verb+\paperheight+		& \uselengthunit{cm}\printlength{\paperheight}  	& \uselengthunit{pt}\printlength{\paperheight}
+	\\
+	Textbreite			& \verb+\textwidth+			& \uselengthunit{cm}\printlength{\textwidth}		& \uselengthunit{pt}\printlength{\textwidth}
+	\\
+	Texthöhe			& \verb+\textheight+		& \uselengthunit{cm}\printlength{\textheight}		& \uselengthunit{pt}\printlength{\textheight}
+	\\
+	Zeilenabstand$^1$	& \verb+\baselineskip+		& \uselengthunit{cm}\printlength{\blsk}				& \uselengthunit{pt}\printlength{\blsk}
+	\\
+	\rowcolor{HSRLakeGreen40}
+	\textbf{Tabellen} & & &
+	\\
+	Zellenabstand		& \verb+\columnsep+			& \uselengthunit{cm}\printlength{\columnsep}		& \uselengthunit{pt}\printlength{\columnsep}
+	\\
+	Zellenabstand$^2$	& \verb+\tabcolsep+			& \uselengthunit{cm}\printlength{\tabcolsep}		& \uselengthunit{pt}\printlength{\tabcolsep}
+	\\
+	Breite Trennlinie	& \verb+\arrayrulewidth+	& \uselengthunit{cm}\printlength{\arrayrulewidth}	& \uselengthunit{pt}\printlength{\arrayrulewidth}					 
+	
+\end{tabular}
+\caption{Diverse Längenangaben}
+\label{tab:laengen}
+\end{table}
+
+\noindent
+\textbf{Anmerkungen zu Tabelle \ref{tab:laengen}:} \\
+$^1$ Der \verb+\baselinestretch+ wird nicht geändert und bleibt daher 0! \\
+$^2$ Welches ist nun die richtige Länge?

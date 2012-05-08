@@ -1,0 +1,32 @@
+\newgeometry{
+   left=1.5cm,
+   right=1cm,
+   bottom=2cm,
+   top=1.5cm}
+\begin{titlepage}
+ \vfill
+ \pgfdeclareimage{HSRLogo}{images/HSR_Logo_CMYK}
+ \begin{tikzpicture}[font=\fontfamily{ua1}\fontseries{m}\selectfont]
+   	\useasboundingbox (0,0) rectangle +(17,26);
+   	\fill[fill=HSRBlue] (current page.south west) rectangle +(12.4cm,12.4cm);
+   	\node[xshift=-0.01cm, yshift=-0.94cm] {\pgfbox[left,bottom]{\pgfuseimage{HSRLogo}}};
+
+	\begin{scope}[xshift=6cm, color=HSRWhite]
+   		\draw[yshift=11cm]
+      		node[text width=10cm] {
+   				{\fontsize{17}{17}\selectfont
+   					HSR-\LaTeX \, Package
+   				}   				
+   	  	};
+   		\draw[yshift=9cm]
+   	  		node[text width=10cm, align=left] {
+   	   			{\fontsize{14}{14}\selectfont
+   	    			Dokumentation \\
+   	    			\vspace{\baselineskip}
+   	    			Jürg Rast, \today
+   	   			}
+   	  	};
+	\end{scope}
+ \end{tikzpicture}
+\end{titlepage}
+\restoregeometry

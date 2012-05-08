@@ -1,0 +1,44 @@
+\section{Eingebundene Klassen und Packages}
+
+Die \verb+HSR+-Klasse basiert auf der \verb+article+ Klasse, es werden keine weiteren Klassen verwendet. 
+
+\settowidth{\ci}{pdftexcmds}
+\setlength{\cii}{\textwidth}
+\advance\cii by -\ci
+\advance\cii by -4\tabcolsep
+\begin{table}[!hb]
+\centering
+\rowcolors{2}{HSRLightGray20}{HSRLightGray40}
+\begin{tabular}{p{\ci}p{\cii}}
+	\rowcolor{HSRLakeGreen40}
+	\textbf{Package} & \textbf{Beschreibung}
+	\\
+	kvoptions 	& Wird verwendet um Key-Value Werte der Klasse zu parsen
+	\\
+	boolexpr 	& Einfaches handling von Wahrheitswerten und switch-case Blöcke
+	\\
+	pdftexcmds	& Für Stringvergleiche
+	\\
+	inputenc	& Zeichencodierung der Input-Files. Wird auf UTF-8 festgelegt.
+	\\
+	babel		& Wörterbuch für Silbentrennung (es wird ngerman verwendet)
+	\\
+	varioref	& Verweise auf Deutsch
+	\\
+	graphicx	& Wird von der Klasse verwendet um das Headerbild einzubinden
+	\\
+	uarial		& Schriftart im Header (Achtung, muss selbst installiert werden!)
+	\\
+	fontenc		&
+	\\
+	geometry	& Für den Satzspiegel
+	\\
+	fancyhdr	& Für die Kopf- und Fusszeile
+	\\
+	hyperref	& Style der internen und externen Links
+	\\
+	xcolor		& Alle HSR Farben werden damit definiert
+\end{tabular}
+\caption{Liste aller eingebundenen Klassen und Packages}
+\label{tab:KlassenPackages}
+\end{table}

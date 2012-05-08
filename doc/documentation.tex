@@ -1,0 +1,40 @@
+\documentclass[]{HSR}
+
+\settitle{Dokumentation HSR-Latex-Package}
+\setauthor{Jürg Rast}
+\setarraystretch{1.5}
+
+\usepackage{printlen} % Für die Ausgabe von Registerwerten
+\usepackage{tikz}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Register für die Tabellenbreiten %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newlength{\ci}		% column 1
+\newlength{\cii}	% column 2 
+\newlength{\ciii}	% column 3
+\newlength{\civ}	% column 4
+\newlength{\cv}		% column 5
+
+ 
+
+\begin{document}
+\include{sections/titlepage}
+
+\pagenumbering{Roman}
+\tableofcontents
+\listoftables
+\newpage
+
+\pagenumbering{arabic}
+\include{sections/einleitung}
+\include{sections/klasse}
+ 
+
+\begin{appendix}
+ \include{sections/KlassenPackages}
+ \include{sections/laengen}
+\end{appendix}
+
+ 
+\end{document} 

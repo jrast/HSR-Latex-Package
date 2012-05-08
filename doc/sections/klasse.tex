@@ -1,0 +1,75 @@
+\section{Verwendung}
+ Nach der Installation kann sowohl die Dokumentklasse \verb+HSR+ als auch das \verb+HSRColors+-Package wie die bekannten Klassen und Packages
+ verwendet werden.
+ Es genügt also folgende Zeilen im Dokument einzufügen:
+ \begin{verbatim}
+   \documentclass{HSR}
+   \usepackage{HSRColors}
+ \end{verbatim}
+ Wird die Dokumentklasse \verb+HSR+ verwendet erübrigt sich das laden des \verb+HSRColor+-Packages, das Package wird von der \verb+HSR+-Klasse
+ automatisch geladen.
+
+
+\subsection{Dokumentklasse HSR}
+Die Dokumentklasse \verb+HSR+ basiert auf der \verb+article+ Klasse und definiert somit das Layout des Dokuments. Der \verb+HSR+ Klasse können also
+dieselben Optionen wie der \verb+article+ Klasse übegeben werden. Einige Optionen werden dabei unbeachtet an \verb+article+ weitergereicht, andere
+werden dazu verwendet das Layout genauer zu definieren und erst dann weitergereicht. Die Klasse stellt zudem einige nützliche Makros bereit um die
+Arbeit weiter zu erleichtern. Mehr dazu ist in den entsprechenden Abschnitten zu finden.
+
+\subsubsection{Definierte Optionen}
+Optionen welche das Layout verändern sind der unten stehenden Tabelle zu entnehmen.
+
+\settowidth{\ci}{a4paper}
+\setlength{\cii}{\textwidth}
+\advance\cii by -\ci
+\advance\cii by -1\arrayrulewidth
+\advance\cii by -4\tabcolsep
+
+\begin{table}[!hb]
+\centering
+\rowcolors{2}{HSRLightGray20}{HSRLightGray40}
+\begin{tabular}{p{\ci}|p{\cii}}
+	\rowcolor{HSRLakeGreen40}
+	\textbf{Option} & \textbf{Einfluss}
+	\\
+	twoside & Wird verwendet um bei beidseitigem Druck die Seitenränder und die Fusszeile anzupassen
+	\\
+	a4paper & Diese Option wird immer gesetzt und kann im Moment nicht geändert werden.
+\end{tabular}
+\caption{Optionen mit Einfluss auf das Layout}
+\label{tab:DokKlasseHSR:Optionen}
+\end{table}
+
+\subsubsection{Definierte Makros}
+Um das Arbeiten zu erleichtern und weitere Dokumentoptionen zu setzen wurden zusätzliche Makros definiert.
+Tabelle \ref{tab:DokKlasseHSR:Makros} bietet einen kurzen Überblick, auf die einzelnen Makros wird später
+noch eingegangen.
+
+\setlength{\ci}{4.5cm}
+\settowidth{\cii}{Kein Wert}
+\setlength{\ciii}{\textwidth}
+\advance\ciii by -\ci
+\advance\ciii by -\cii
+\advance\ciii by -2\arrayrulewidth
+\advance\ciii by -6\tabcolsep
+
+\begin{table}[!ht]
+\centering
+\rowcolors{2}{HSRLightGray20}{HSRLightGray40}
+\begin{tabular}{p{\ci}|p{\cii}|p{\ciii}}
+	\rowcolor{HSRLakeGreen40}
+	\textbf{Command} 				& \textbf{Default} & \textbf{Beispiel}
+	\\
+	\verb+\settitle{<Titel>}+ 		& Kein Wert & \verb+\settitle{HSR-Latex-Package}+
+	\\
+	\verb+\setauthor{<Autor>}+ 		& Kein Wert & \verb+\setauthor{Jürg Rast}+
+	\\
+	\verb+\setarraystretch{<Wert>}+ & Kein Wert & \verb+\setarraystretch{1.5}+
+\end{tabular}
+\caption{In der HSR Klasse definierte Makros}
+\label{tab:DokKlasseHSR:Makros}
+\end{table}
+
+
+
+\subsection{Package HSRColors}
