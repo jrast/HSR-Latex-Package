@@ -1,0 +1,49 @@
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{beamerthemeHSR}[2012/09/28 Erste Version]
+
+\RequirePackage{HSRColors}
+\RequirePackage{tikz}
+
+
+\mode<presentation>
+\useinnertheme{rectangles}
+\useoutertheme[subsection=false]{miniframes}
+\usecolortheme{HSR}
+
+
+
+\defbeamertemplate*{title page}{customized}[1][]{%
+	\pgfdeclareimage[width=3cm]{HSRLogo}{images/HSR_LOGO_CMYK}%
+	\begin{tikzpicture}[font=\fontfamily{ua1}\fontseries{m}\sffamily\selectfont]
+		\useasboundingbox (0,0) rectangle +(\textwidth,\textheight); 	
+		\fill[fill=HSRBlue] (0,0) rectangle +(7cm, 7cm);   	
+		\node[xshift=-0cm, yshift=-0.5cm] {\pgfbox[left,bottom]{\pgfuseimage{HSRLogo}}};
+		\begin{scope}[xshift=3.5cm, yshift=5cm, color=HSRWhite]   		
+			\draw node[text width=6cm, minimum height=10cm, align=left] {
+				\usebeamerfont{title}\inserttitle\par
+				\smallskip
+				\usebeamerfont{subtitle}\insertsubtitle\par
+				\bigskip
+				\usebeamerfont{author}\insertauthor\par
+				\smallskip
+				\usebeamerfont{institute}\insertinstitute\par
+				\smallskip
+				\usebeamerfont{date}\insertdate\par
+				};
+		\end{scope} 
+	\end{tikzpicture}
+}
+
+\setbeamertemplate{footline}{%
+	\pgfdeclareimage[width=2.5cm]{HSRLogo}{images/HSR_LOGO_CMYK}%
+	\begin{beamercolorbox}[sep=1em,wd=\paperwidth,leftskip=0.5cm,rightskip=0.5cm]{HSRSchwarz}
+		\hrule
+		\vspace{0.55cm}
+		\pgfbox[left,center]{\hspace{0.3cm}\pgfuseimage{HSRLogo}}
+		\hfil
+		\scriptsize{\insertframenumber}
+	\end{beamercolorbox}%
+}
+
+
+\mode<all>
